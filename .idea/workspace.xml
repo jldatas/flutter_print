@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5e653d6-c943-4dd6-86c9-8be42341245c" name="Default Changelist" comment="" />
+    <list default="true" id="c5e653d6-c943-4dd6-86c9-8be42341245c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/example/lib/parser_zpl_utils.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[1972850]" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1o0f7CSOlq5OpQ64kQ1QxfhEKG8" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -40,47 +59,78 @@
       <option name="presentableId" value="Default" />
       <updated>1612428258377</updated>
     </task>
+    <task id="LOCAL-00001" summary="feat: 新增样例标签打印">
+      <created>1614076953261</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1614076953261</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.configurationType" implementationName="FlutterRunConfigurationType" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: 新增样例标签打印" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 新增样例标签打印" />
   </component>
   <component name="WindowStateProjectService">
     <state x="515" y="200" key="AndroidProcessChooserDialog" timestamp="1612525027412">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="515" y="200" key="AndroidProcessChooserDialog/0.0.1440.900@0.0.1440.900" timestamp="1612525027412" />
-    <state width="1440" height="160" key="GridCell.Tab.0.bottom" timestamp="1612621308939">
+    <state x="278" y="24" key="CommitChangelistDialog2" timestamp="1614076953369">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="160" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1612621308939" />
-    <state width="1440" height="160" key="GridCell.Tab.0.center" timestamp="1612621308938">
+    <state x="278" y="24" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1614076953369" />
+    <state width="1440" height="313" key="GridCell.Tab.0.bottom" timestamp="1616730282407">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="160" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1612621308938" />
-    <state width="1440" height="160" key="GridCell.Tab.0.left" timestamp="1612621308937">
+    <state width="1440" height="313" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1616730282407" />
+    <state width="1440" height="313" key="GridCell.Tab.0.center" timestamp="1616730282406">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="160" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1612621308937" />
-    <state width="1440" height="160" key="GridCell.Tab.0.right" timestamp="1612621308938">
+    <state width="1440" height="313" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1616730282406" />
+    <state width="1440" height="313" key="GridCell.Tab.0.left" timestamp="1616730282405">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="160" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1612621308938" />
+    <state width="1440" height="313" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1616730282405" />
+    <state width="1440" height="313" key="GridCell.Tab.0.right" timestamp="1616730282407">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1440" height="313" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1616730282407" />
     <state x="208" y="28" key="SettingsEditor" timestamp="1612428370699">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="208" y="28" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1612428370699" />
+    <state width="720" height="450" key="XDebugger.FullValuePopup" timestamp="1616747661300">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="720" height="450" key="XDebugger.FullValuePopup/0.0.1440.900@0.0.1440.900" timestamp="1616747661300" />
     <state x="500" y="232" key="chooseDestDirectoryDialog" timestamp="1612429143131">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="500" y="232" key="chooseDestDirectoryDialog/0.0.1440.900@0.0.1440.900" timestamp="1612429143131" />
-    <state x="412" y="205" width="615" height="490" key="find.popup" timestamp="1612492583615">
+    <state x="412" y="205" width="615" height="490" key="find.popup" timestamp="1616660775127">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="412" y="205" width="615" height="490" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1612492583615" />
+    <state x="412" y="205" width="615" height="490" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1616660775127" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1612429455117">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1612429455117" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/example/lib/main.dart</url>
+          <line>278</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_printer/flutter_printer.dart';
+import 'package:flutter_printer_example/parser_zpl_utils.dart';
 
 void main() {
   runApp(MyApp());
@@ -37,6 +38,8 @@ class _MyAppState extends State<MyApp> {
   String codeQRSize = '3';
 
   String _platformVersion = 'Unknown';
+
+  String zpl;
 
   @override
   void initState() {
@@ -137,33 +140,143 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future onPrintFace() async {
+    // String cmdText = "^XA" +
+    //     "" +
+    //     "^CI26  //ASCII Transparency和多字节亚洲编码" +
+    //     "^SEE:GB18030.DAT  //码表" +
+    //     "^CW1,E:SIMSUN.FNT  //字体（宋体）" +
+    //     "" +
+    //     "^FX 打印顶部收货单合计" +
+    //     "^FO250,20^A1N,48,48^FD收货单^FS //打印文字" +
+    //     "^FT213,300^BQ2,2,10^A1N,48,48^FDR20200202^FS  //打印二维码" +
+    //     "^FO92,338^A1N,36,36^FD数量合计:   34^FS" +
+    //     "^FO92,415^A1N,36,36^FD采购单合计:  3^FS" +
+    //     "^FO30,492^A0N,24,24^FD............................................................................^FS" +
+    //     "^FO30,503^A0N,24,24^FD............................................................................^FS" +
+    //     "" +
+    //     "^FX 打印单个采购单数量" +
+    //     "^FO34,555^A1N,26,26^FD采购单:   PO011801300004^FS" +
+    //     "^FT463,610^BQ2,2,4^A1N,24,24^FDR20200202^FS" +
+    //     "^FO34,635^A1N,20,20^FD采购数量^FS" +
+    //     "^FO244,635^A1N,20,20^FD收货数量^FS" +
+    //     "^FO461,635^A1N,20,20^FD待收数量^FS" +
+    //     "^FO59,680^A1N,20,20^FD12^FS" +
+    //     "^FO268,680^A1N,20,20^FD12^FS" +
+    //     "^FO500,680^A1N,20,20^FD12^FSf'/" +
+    //     "^FO30,730^A0N,24,24^FD.............................................................................^FS" +
+    //     "" +
+    //     "^XZ";
+    final data = {
+      "receipt_number": "FDR20200202",
+      "total_quantity": 34,
+      "purchase_order_total": 3,
+      "item": [
+        {
+          "sku": "FDR20200001",
+          "purchase_number": "PO011801300004",
+          "purchase_total": 3,
+          "receiving_total": 3,
+          "received_total": 0,
+        },
+        {
+          "sku": "FDR20200002",
+          "purchase_number": "PO011801300004",
+          "purchase_total": 4,
+          "receiving_total": 4,
+          "received_total": 0,
+        },
+        {
+          "sku": "FDR20200202",
+          "purchase_number": "PO011801300004",
+          "purchase_total": 24,
+          "receiving_total": 24,
+          "received_total": 0,
+        },
+        {
+          "sku": "FDR20200202",
+          "purchase_number": "PO011801300004",
+          "purchase_total": 12,
+          "receiving_total": 13,
+          "received_total": 1,
+        },
+      ],
+      "operator_name": "张三",
+      "print_time": new DateTime.now().toString(),
+    };
     String cmdText = "^XA\n" +
         "\n" +
+        "^FX<SETTINGS> 设置\n" +
         "^CI26  //ASCII Transparency和多字节亚洲编码\n" +
         "^SEE:GB18030.DAT  //码表\n" +
         "^CW1,E:SIMSUN.FNT  //字体（宋体）\n" +
+        "^PW640^LL2010\n" +
+        "^FX</SETTINGS>\n" +
         "\n" +
-        "^FX 打印顶部收货单合计\n" +
+        "^FX<HEADER y=0 height=520> 打印顶部收货单合计\n" +
         "^FO250,20^A1N,48,48^FD收货单^FS //打印文字\n" +
-        "^FT213,300^BQ2,2,10^A1N,48,48^FDR20200202^FS  //打印二维码\n" +
-        "^FO92,338^A1N,36,36^FD数量合计:   34^FS\n" +
-        "^FO92,415^A1N,36,36^FD采购单合计:  3^FS\n" +
-        "^FO30,492^A0N,24,24^FD............................................................................^FS\n" +
-        "^FO30,503^A0N,24,24^FD............................................................................^FS\n" +
+        "^FT213,300^BQ2,2,10^A1N,48,48^{{receipt_number}}^FS  //打印二维码\n" +
+        "^FO92,338^A1N,36,36^FD数量合计:   {{total_quantity}}^FS\n" +
+        "^FO92,415^A1N,36,36^FD采购单合计:  {{purchase_order_total}}^FS\n" +
+        "^FO30,482^A0N,24,24^FD............................................................................^FS\n" +
+        "^FO30,493^A0N,24,24^FD............................................................................^FS\n" +
+        "^FX</HEADER>\n" +
         "\n" +
-        "^FX 打印单个采购单数量\n" +
-        "^FO34,555^A1N,26,26^FD采购单:   PO011801300004^FS\n" +
-        "^FT463,610^BQ2,2,4^A1N,24,24^FDR20200202^FS\n" +
+        "^FX<BODY item=1 y=520 height=230> 打印单个采购单数量\n" +
+        "^FX<BLOCK id=1 height=230>\n" +
+        "^FO34,555^A1N,26,26^FD采购单:   {{item|sku}}^FS\n" +
+        "^FT463,610^BQ2,2,4^A1N,24,24^{{item|sku}}^FS\n" +
         "^FO34,635^A1N,20,20^FD采购数量^FS\n" +
         "^FO244,635^A1N,20,20^FD收货数量^FS\n" +
         "^FO461,635^A1N,20,20^FD待收数量^FS\n" +
-        "^FO59,680^A1N,20,20^FD12^FS\n" +
-        "^FO268,680^A1N,20,20^FD12^FS\n" +
-        "^FO500,680^A1N,20,20^FD12^FSf'/\n" +
-        "^FO30,730^A0N,24,24^FD.............................................................................^FS\n" +
+        "^FO59,680^A1N,20,20^FD{{item|purchase_total}}^FS\n" +
+        "^FO268,680^A1N,20,20^FD{{item|receiving_total}}^FS\n" +
+        "^FO500,680^A1N,20,20^FD{{item|received_total}}^FS\n" +
+        "^FO30,710^A0N,24,24^FD.............................................................................^FS\n" +
+        "^FX</BLOCK>\n" +
+        "^FX</BODY>\n" +
+        "\n" +
+        "^FX<FOOTER y=760 height=80> 打印操作日志\n" +
+        "^FO30,750^A0N,24,24^FD.............................................................................^FS\n" +
+        "^FO34,772^A1N,20,20^FD操作人: {{operator_name}}  打印时间: {{print_time}}^FS\n" +
+        "^FX</FOOTER>\n" +
         "\n" +
         "^XZ";
-    await FlutterPrinter.runCmd(cmdText);
+
+    String cmd = Parser.initParser(
+      cmdText: cmdText,
+      data: data,
+    );
+
+    await FlutterPrinter.runCmd(cmd);
+  }
+
+  Future onPrintLabel() async {
+    final data = {
+      "sku": "F0DD00002",
+      "product_name_cn": "褐色墨镜 80S",
+    };
+    String cmdText = "^XA\n" +
+        "^FX<SETTINGS>\n" +
+        "^CI26  //ASCII Transparency和多字节亚洲编码\n" +
+        "^SEE:GB18030.DAT  //码表\n" +
+        "^CW1,E:SIMSUN.FNT  //字体（宋体）\n" +
+        "^PW400^PL80^LL80\n" +
+        "^FX</SETTINGS>\n" +
+        "^FX<BODY>\n" +
+        "^FT20,80^BQN,2,4^A1N,24,24^FD{{sku}}^FS\n" +
+        "^FO120,0^A1N,24,24^FD{{product_name_cn}}^FS\n" +
+        "^FO120,30^A1N,24,24^FD{{sku}}^FS\n" +
+        "^FO120,60^A1N,24,24^FDMade In China^FS\n" +
+        "^FX</BODY>\n" +
+        "^XZ";
+
+    String cmd = Parser.initParser(
+        cmdText: cmdText,
+        data: data,
+        options: Settings(
+          pagerLength: 80,
+        ));
+    await FlutterPrinter.runCmd(cmd);
   }
 
   @override
@@ -233,6 +346,10 @@ class _MyAppState extends State<MyApp> {
                     onPressed: () => this.onPrintFace(),
                   ),
                   Padding(padding: EdgeInsets.only(right: 10)),
+                  RaisedButton(
+                    child: Text('打印样例标签'),
+                    onPressed: () => this.onPrintLabel(),
+                  ),
                 ],
               ),
               Row(
